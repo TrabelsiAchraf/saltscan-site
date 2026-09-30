@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salt Scan — Accessibilité</title>
+<link rel="canonical" href="https://trabelsiachraf.com/saltscan-site/fr/accessibility.html">
+<link rel="alternate" hreflang="en" href="https://trabelsiachraf.com/saltscan-site/accessibility.html">
+<link rel="alternate" hreflang="fr" href="https://trabelsiachraf.com/saltscan-site/fr/accessibility.html">
+<link rel="alternate" hreflang="ar" href="https://trabelsiachraf.com/saltscan-site/ar/accessibility.html">
+<link rel="alternate" hreflang="x-default" href="https://trabelsiachraf.com/saltscan-site/accessibility.html">
+<link rel="icon" type="image/png" href="../icon.png">
+<link rel="apple-touch-icon" href="../icon.png">
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; max-width: 720px; margin: 40px auto; padding: 0 24px; color: #1d1d1f; line-height: 1.6; }
+  h1 { font-size: 32px; margin-bottom: 4px; }
+  h2 { font-size: 20px; margin-top: 32px; }
+  h3 { font-size: 17px; margin-top: 20px; }
+  .updated { color: #6e6e73; font-size: 14px; margin-bottom: 32px; }
+  .lang { display: flex; gap: 14px; font-size: 14px; margin-bottom: 24px; }
+  .lang a[aria-current] { color: #1d1d1f; font-weight: 700; text-decoration: none; }
+  a { color: #1a7f5c; }
+  code { background: #f5f5f7; padding: 2px 6px; border-radius: 4px; font-size: 90%; }
+  ul.features { list-style: none; padding: 0; }
+  ul.features li {
+    padding: 14px 16px; margin: 8px 0; border-radius: 10px;
+    background: #f5f5f7; border-inline-start: 3px solid #1a7f5c;
+  }
+  ul.features li strong { display: block; margin-bottom: 4px; }
+  footer {
+    padding: 60px 0 40px; border-top: 1px solid #e5e5ea; margin-top: 56px;
+    text-align: center; color: #6e6e73; font-size: 14px;
+  }
+  footer .container { max-width: 720px; margin: 0 auto; }
+  footer .links { display: flex; justify-content: center; gap: 12px 28px; margin-bottom: 20px; flex-wrap: wrap; }
+  footer a { color: inherit; text-decoration: none; }
+  footer a:hover { color: #1d1d1f; text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<div class="lang" aria-label="Langue">
+  <a href="https://trabelsiachraf.com/saltscan-site/accessibility.html" hreflang="en" lang="en">English</a>
+  <a href="https://trabelsiachraf.com/saltscan-site/fr/accessibility.html" hreflang="fr" lang="fr" aria-current="page">Français</a>
+  <a href="https://trabelsiachraf.com/saltscan-site/ar/accessibility.html" hreflang="ar" lang="ar">العربية</a>
+</div>
+
+<h1>Salt Scan — Accessibilité</h1>
+<p class="updated">Dernière mise à jour : 30 septembre 2026</p>
+
+<p>Salt Scan est une app SwiftUI native. Cette page liste les fonctions d’accessibilité que nous avons vérifiées dans l’app, et les limites que nous connaissons, pour que vous sachiez à quoi vous attendre.</p>
+
+<h2>Fonctions prises en charge</h2>
+
+<ul class="features">
+  <li>
+    <strong>Texte plus grand (Dynamic Type)</strong>
+    Le texte défini dans l’échelle typographique de l’app utilise les styles de texte du système (titre, en-tête, corps, sous-titre, légende) et suit donc la taille de texte choisie dans iOS.
+  </li>
+  <li>
+    <strong>VoiceOver</strong>
+    Des libellés sont fournis sur les boutons jour précédent et jour suivant du journal et sur le bouton calendrier (avec une indication), sur les boutons moins et plus du sélecteur de portion, sur le bouton Ajouter du journal, et sur l’anneau quotidien de l’Accueil, qui énonce votre consommation et indique qu’il ouvre le journal. Le bouton de recherche de l’Accueil et le bouton retour de l’accueil initial sont aussi libellés. Les libellés suivent la langue de l’app.
+  </li>
+  <li>
+    <strong>La couleur n’est pas le seul signal</strong>
+    Le repère de sel affiche une icône et le mot Faible, Moyen ou Élevé à côté de sa couleur. L’anneau quotidien affiche la quantité sous forme de texte.
+  </li>
+  <li>
+    <strong>Apparence claire, sombre ou système</strong>
+    Choisissez Clair, Sombre ou Système dans les Réglages.
+  </li>
+  <li>
+    <strong>Arabe et écriture de droite à gauche</strong>
+    L’app est entièrement traduite en arabe et adopte le sens de lecture de droite à gauche lorsque l’arabe est la langue. L’anglais et le français sont aussi disponibles.
+  </li>
+</ul>
+
+<h2>Limites connues</h2>
+
+<h3>Certains textes ne s’agrandissent pas</h3>
+<p>Quelques éléments ont une taille fixe : le nombre à l’intérieur de l’anneau quotidien et de l’anneau de score, et la grande icône des écrans vides. Ils ne grandissent pas avec le réglage Texte plus grand.</p>
+
+<h3>Réduire les animations</h3>
+<p>L’app ne gère pas spécifiquement le réglage Réduire les animations : ses animations, comme la mise à jour des nombres et de l’anneau de progression, se déroulent comme d’habitude.</p>
+
+<h3>Le scanner de code-barres nécessite la caméra</h3>
+<p>Scanner consiste à cadrer un code-barres avec la caméra. Si cela vous est difficile, le bouton « Pas de code-barres ? Rechercher par nom » du scanner et la recherche de l’Accueil vous permettent de trouver un produit en saisissant son nom.</p>
+
+<h2>Signaler un problème</h2>
+<p>Si vous rencontrez un problème d’accessibilité ou souhaitez suggérer une amélioration, écrivez à <a href="mailto:trabelsiachraf.devapps@gmail.com">trabelsiachraf.devapps@gmail.com</a>, ou utilisez Réglages › Contactez-nous dans l’app. Les retours sur l’accessibilité sont traités en priorité.</p>
+
+<p><a href="https://trabelsiachraf.com/saltscan-site/fr/support.html">Assistance</a> · <a href="https://trabelsiachraf.com/saltscan-site/fr/privacy.html">Politique de confidentialité</a> · <a href="https://trabelsiachraf.com/saltscan-site/fr/">Retour à l’accueil</a></p>
+
+<footer>
+  <div class="container">
+    <div class="links">
+      <a href="https://trabelsiachraf.com/saltscan-site/fr/">Accueil</a>
+      <a href="https://trabelsiachraf.com/saltscan-site/fr/support.html">Assistance</a>
+      <a href="https://trabelsiachraf.com/saltscan-site/fr/privacy.html">Confidentialité</a>
+      <a href="https://trabelsiachraf.com/saltscan-site/fr/accessibility.html">Accessibilité</a>
+      <a href="https://apps.apple.com/app/id6740041173">App Store</a>
+      <a href="mailto:trabelsiachraf.devapps@gmail.com">Contact</a>
+    </div>
+    <p>© 2026 <a href="https://trabelsiachraf.com/">Achraf Trabelsi</a> · Salt Scan</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salt Scan — Vérifiez le sel dans votre alimentation</title>
+<meta name="description" content="Salt Scan vous dit combien de sel et de sodium contient un produit avant de le manger. Scannez un code-barres, lisez les chiffres en une seconde et suivez votre journée par rapport à votre objectif. Gratuit, sans pub, sans compte, sans traçage.">
+<meta property="og:title" content="Salt Scan — Vérifiez le sel dans votre alimentation">
+<meta property="og:description" content="Scannez un code-barres, lisez le sel et le sodium en une seconde et suivez votre consommation quotidienne. Gratuit, sans pub, sans compte.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://trabelsiachraf.com/saltscan-site/fr/hero.png">
+<link rel="canonical" href="https://trabelsiachraf.com/saltscan-site/fr/">
+<link rel="alternate" hreflang="en" href="https://trabelsiachraf.com/saltscan-site/">
+<link rel="alternate" hreflang="fr" href="https://trabelsiachraf.com/saltscan-site/fr/">
+<link rel="alternate" hreflang="ar" href="https://trabelsiachraf.com/saltscan-site/ar/">
+<link rel="alternate" hreflang="x-default" href="https://trabelsiachraf.com/saltscan-site/">
+<link rel="icon" type="image/png" href="../icon.png">
+<link rel="apple-touch-icon" href="../icon.png">
+<style>
+  :root {
+    --bg: #07130f;
+    --bg-2: #0d1f19;
+    --fg: #f5f5f7;
+    --fg-dim: #a3c2b5;
+    --accent: #2EB885;
+    --accent-2: #1f9d7a;
+    --card: rgba(255, 255, 255, 0.04);
+    --border: rgba(255, 255, 255, 0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  body::before, body::after {
+    content: "";
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -1;
+    pointer-events: none;
+  }
+  body::before {
+    top: -200px; inset-inline-start: -200px;
+    background: radial-gradient(circle, rgba(46, 184, 133, 0.28), transparent 70%);
+  }
+  body::after {
+    bottom: -200px; inset-inline-end: -200px;
+    background: radial-gradient(circle, rgba(31, 157, 122, 0.22), transparent 70%);
+  }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    background: rgba(7, 19, 15, 0.7);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .container {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .logo {
+    font-weight: 700; font-size: 18px; letter-spacing: -0.3px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .logo-icon {
+    width: 28px; height: 28px; border-radius: 7px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  nav ul {
+    display: flex; gap: 32px; list-style: none;
+    font-size: 14px; color: var(--fg-dim);
+  }
+  nav ul a:hover { color: var(--fg); }
+  @media (max-width: 720px) { nav ul { display: none; } }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 26px; border-radius: 999px;
+    font-size: 15px; font-weight: 600;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    border: none; cursor: pointer;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #03150e;
+    box-shadow: 0 10px 40px rgba(46, 184, 133, 0.35);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 50px rgba(46, 184, 133, 0.5); }
+  .btn-secondary {
+    background: var(--card); color: var(--fg);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover { background: rgba(255, 255, 255, 0.08); }
+
+  .hero { padding: 100px 0 80px; text-align: center; }
+  .hero .badge {
+    display: inline-block; padding: 6px 14px; border-radius: 999px;
+    background: var(--card); border: 1px solid var(--border);
+    font-size: 13px; color: var(--fg-dim);
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-size: clamp(40px, 6vw, 76px);
+    line-height: 1.05; letter-spacing: -2px; font-weight: 800;
+    background: linear-gradient(180deg, #ffffff 30%, #a3c2b5 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    margin-bottom: 24px;
+  }
+  .hero p.lead {
+    font-size: clamp(18px, 2vw, 22px);
+    color: var(--fg-dim);
+    max-width: 640px; margin: 0 auto 40px;
+  }
+  .hero-cta {
+    display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+  .hero-image {
+    max-width: 330px; width: 100%;
+    border-radius: 18px;
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--border);
+  }
+
+  section { padding: 100px 0; }
+  section h2 {
+    font-size: clamp(32px, 4vw, 48px); text-align: center;
+    letter-spacing: -1px; font-weight: 800; margin-bottom: 16px;
+    background: linear-gradient(180deg, #ffffff 50%, #a3c2b5 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  section .subtitle {
+    text-align: center; color: var(--fg-dim);
+    font-size: 18px; max-width: 560px; margin: 0 auto 60px;
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .feature {
+    padding: 32px; border-radius: 18px;
+    background: var(--card); border: 1px solid var(--border);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .feature:hover { transform: translateY(-4px); border-color: rgba(46, 184, 133, 0.4); }
+  .feature .icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: linear-gradient(135deg, rgba(46, 184, 133, 0.22), rgba(31, 157, 122, 0.22));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; margin-bottom: 20px;
+  }
+  .feature h3 { font-size: 18px; margin-bottom: 8px; font-weight: 700; }
+  .feature p { color: var(--fg-dim); font-size: 15px; }
+
+  .shots {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .shots img {
+    width: 100%; border-radius: 18px;
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease;
+  }
+  .shots img:hover { transform: scale(1.02); }
+
+  .pricing-card {
+    max-width: 440px; margin: 0 auto; padding: 48px 40px;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(46, 184, 133, 0.12), rgba(31, 157, 122, 0.04));
+    border: 1px solid rgba(46, 184, 133, 0.3);
+    border-radius: 24px;
+    box-shadow: 0 30px 80px rgba(46, 184, 133, 0.15);
+  }
+  .pricing-card .price {
+    font-size: 64px; font-weight: 800; letter-spacing: -2px;
+    margin: 16px 0 8px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .pricing-card .price-note { color: var(--fg-dim); font-size: 15px; margin-bottom: 32px; }
+  .pricing-card ul { list-style: none; text-align: start; margin-bottom: 32px; }
+  .pricing-card li {
+    padding: 10px 0; color: var(--fg-dim); font-size: 15px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .pricing-card li::before { content: "✓"; color: var(--accent); font-weight: 700; }
+
+  footer {
+    padding: 60px 0 40px; border-top: 1px solid var(--border);
+    text-align: center; color: var(--fg-dim); font-size: 14px;
+  }
+  footer .links {
+    display: flex; justify-content: center; gap: 28px; margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  footer .links a:hover { color: var(--fg); }
+
+  .lang { display: flex; gap: 14px; font-size: 13px; color: var(--fg-dim); }
+  .lang a:hover, .lang a[aria-current] { color: var(--fg); }
+  .lang a[aria-current] { font-weight: 700; }
+  .logo img { width: 28px; height: 28px; border-radius: 7px; display: block; }
+  .shots img { height: auto; }
+  .note { text-align: center; color: var(--fg-dim); font-size: 13px; max-width: 560px; margin: 32px auto 0; }
+  @media (max-width: 720px) { .lang { gap: 10px; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="#" class="logo">
+      <img src="../icon.png" alt="" width="28" height="28">
+      Salt Scan
+    </a>
+    <ul>
+      <li><a href="#features">Fonctionnalités</a></li>
+      <li><a href="#screenshots">Captures d’écran</a></li>
+      <li><a href="#price">Prix</a></li>
+      <li><a href="support.html">Assistance</a></li>
+    </ul>
+    <div class="lang" aria-label="Langue">
+      <a href="https://trabelsiachraf.com/saltscan-site/" hreflang="en" lang="en">English</a>
+      <a href="https://trabelsiachraf.com/saltscan-site/fr/" hreflang="fr" lang="fr" aria-current="page">Français</a>
+      <a href="https://trabelsiachraf.com/saltscan-site/ar/" hreflang="ar" lang="ar">العربية</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <span class="badge">Gratuit sur l’App Store</span>
+    <h1>Vérifiez le sel<br>dans votre alimentation.</h1>
+    <p class="lead">Salt Scan vous dit combien de sel et de sodium contient un produit avant de le manger. Scannez le code-barres, lisez les chiffres en une seconde et suivez votre consommation quotidienne par rapport à votre objectif.</p>
+    <div class="hero-cta">
+      <a href="https://apps.apple.com/app/id6740041173" class="btn btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.04c-.03-3.18 2.6-4.71 2.72-4.78-1.49-2.17-3.79-2.47-4.61-2.5-1.96-.2-3.83 1.16-4.83 1.16-1.01 0-2.55-1.13-4.19-1.1-2.16.03-4.15 1.26-5.27 3.19-2.25 3.9-.58 9.66 1.61 12.83 1.07 1.55 2.34 3.29 4 3.23 1.61-.07 2.22-1.04 4.16-1.04 1.94 0 2.49 1.04 4.19 1 1.73-.03 2.83-1.57 3.89-3.13 1.23-1.79 1.74-3.53 1.77-3.62-.04-.02-3.4-1.31-3.44-5.19zM13.92 3.2c.89-1.08 1.49-2.59 1.32-4.08-1.28.05-2.83.85-3.76 1.93-.83.96-1.55 2.49-1.36 3.96 1.43.11 2.9-.73 3.8-1.81z"/></svg>
+        Télécharger sur l’App Store
+      </a>
+      <a href="support.html" class="btn btn-secondary">
+        Lire la FAQ
+      </a>
+    </div>
+    <img src="hero.png" alt="Écran d’accueil de Salt Scan : l’anneau de sodium du jour, les derniers scans avec les repères Faible, Moyen et Élevé, et le bouton Scanner un produit" class="hero-image">
+  </div>
+</header>
+
+<section id="features">
+  <div class="container">
+    <h2>Scannez. Lisez. Décidez.</h2>
+    <p class="subtitle">Le chiffre qui compte, directement dans le rayon.</p>
+    <div class="features">
+      <div class="feature">
+        <div class="icon">📷</div>
+        <h3>Scannez et évaluez</h3>
+        <p>Scannez n’importe quel code-barres : teneur en sel et en sodium immédiate, avec un repère clair Faible / Moyen / Élevé. Le repère suit les seuils du feu tricolore britannique : jusqu’à 0,3 g de sel pour 100 g, c’est faible ; au-delà de 1,5 g, c’est élevé.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🧂</div>
+        <h3>Sel en g ou sodium en mg</h3>
+        <p>Lisez les chiffres comme votre pays les indique : sodium en mg ou sel en g, selon votre région. Vous pouvez changer dans les Réglages.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">📒</div>
+        <h3>Un journal du jour modifiable</h3>
+        <p>Ajoutez une portion à votre journal et regardez l’anneau de sel se remplir. Ouvrez n’importe quel jour pour changer une quantité, la déplacer ou la supprimer.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">⚖️</div>
+        <h3>Portions ou grammes exacts</h3>
+        <p>Enregistrez une demi-portion, deux portions ou le nombre exact de grammes que vous avez mangés. Salt Scan calcule le sel pour vous.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🆚</div>
+        <h3>Comparez côte à côte</h3>
+        <p>Placez des produits l’un à côté de l’autre, sodium, sucres, graisses saturées et Nutri-Score, et choisissez la meilleure option.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">❤️</div>
+        <h3>App Santé, en option</h3>
+        <p>Enregistrez si vous le souhaitez le sodium des portions de votre journal dans l’app Santé. C’est désactivé par défaut, et Salt Scan ne lit jamais vos données Santé.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🔍</div>
+        <h3>Recherche par nom</h3>
+        <p>Pas de code-barres sous la main ? Recherchez le produit par son nom depuis l’Accueil.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🗂️</div>
+        <h3>Chaque scan conservé</h3>
+        <p>Vos scans sont gardés dans un historique où vous pouvez chercher, avec des favoris pour les produits que vous rachetez.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🥗</div>
+        <h3>Nutri-Score, allergènes, additifs</h3>
+        <p>Calories, sucres, graisses saturées, protéines, allergènes et additifs sur le même écran que le sel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="screenshots">
+  <div class="container">
+    <h2>Voyez-le en action</h2>
+    <p class="subtitle">Du code-barres à votre total du jour.</p>
+    <div class="shots">
+      <img src="shot-1.png" alt="Le scanner de code-barres de Salt Scan, avec un cadre pour aligner le code-barres et un raccourci Rechercher par nom" width="480" height="1043">
+      <img src="shot-2.png" alt="Un produit scanné avec un repère Moyen, son Nutri-Score, le sodium pour 100 g et par portion, et ses nutriments" width="480" height="1043">
+      <img src="shot-3.png" alt="Trois produits comparés côte à côte : sodium, Nutri-Score, sucres, graisses saturées et énergie" width="480" height="1043">
+      <img src="shot-4.png" alt="L’onglet Historique listant les produits scannés par jour, chacun avec un repère Faible, Moyen ou Élevé" width="480" height="1043">
+    </div>
+    <p class="note">Les données produits proviennent d’Open Food Facts, la base alimentaire ouverte entretenue par des bénévoles dans le monde entier. L’exactitude dépend des contributions : vérifiez toujours l’étiquette avant toute décision médicale.</p>
+  </div>
+</section>
+
+<section id="price">
+  <div class="container">
+    <h2>Gratuit.</h2>
+    <p class="subtitle">Aucune pub, aucun compte, aucun traçage.</p>
+    <div class="pricing-card">
+      <div class="price">Gratuit</div>
+      <div class="price-note">Aucune pub · aucun compte · aucun traçage</div>
+      <ul>
+        <li>Scan de code-barres avec un repère Faible / Moyen / Élevé</li>
+        <li>Sodium en mg ou sel en g, selon le pays</li>
+        <li>Journal du jour, modifiable jour par jour</li>
+        <li>Portions ou grammes exacts</li>
+        <li>Comparaison de produits côte à côte</li>
+        <li>Export facultatif vers l’app Santé</li>
+        <li>Recherche par nom, historique et favoris</li>
+        <li>Anglais, français et arabe, mode clair et sombre</li>
+      </ul>
+      <a href="https://apps.apple.com/app/id6740041173" class="btn btn-primary" style="width: 100%; justify-content: center;">
+        Télécharger sur l’App Store
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="links">
+      <a href="https://trabelsiachraf.com/saltscan-site/fr/">Accueil</a>
+      <a href="https://trabelsiachraf.com/saltscan-site/fr/support.html">Assistance</a>
+      <a href="https://trabelsiachraf.com/saltscan-site/fr/privacy.html">Confidentialité</a>
+      <a href="https://trabelsiachraf.com/saltscan-site/fr/accessibility.html">Accessibilité</a>
+      <a href="https://apps.apple.com/app/id6740041173">App Store</a>
+      <a href="mailto:trabelsiachraf.devapps@gmail.com">Contact</a>
+    </div>
+    <p>© 2026 <a href="https://trabelsiachraf.com/">Achraf Trabelsi</a> · Salt Scan</p>
+  </div>
+</footer>
+
+</body>
+</html>
