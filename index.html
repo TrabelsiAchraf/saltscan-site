@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salt Scan — Check the salt in your food</title>
+<meta name="description" content="Salt Scan tells you how much salt and sodium is in your food before you eat it. Scan a barcode, see the numbers in a second and track your day against your own goal. Free, no ads, no account, no tracking.">
+<meta property="og:title" content="Salt Scan — Check the salt in your food">
+<meta property="og:description" content="Scan a barcode, see the salt and sodium in a second, and track your daily intake. Free, no ads, no account.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://trabelsiachraf.com/saltscan-site/hero.png">
+<link rel="canonical" href="https://trabelsiachraf.com/saltscan-site/">
+<link rel="alternate" hreflang="en" href="https://trabelsiachraf.com/saltscan-site/">
+<link rel="alternate" hreflang="fr" href="https://trabelsiachraf.com/saltscan-site/fr/">
+<link rel="alternate" hreflang="ar" href="https://trabelsiachraf.com/saltscan-site/ar/">
+<link rel="alternate" hreflang="x-default" href="https://trabelsiachraf.com/saltscan-site/">
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<style>
+  :root {
+    --bg: #07130f;
+    --bg-2: #0d1f19;
+    --fg: #f5f5f7;
+    --fg-dim: #a3c2b5;
+    --accent: #2EB885;
+    --accent-2: #1f9d7a;
+    --card: rgba(255, 255, 255, 0.04);
+    --border: rgba(255, 255, 255, 0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  body::before, body::after {
+    content: "";
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -1;
+    pointer-events: none;
+  }
+  body::before {
+    top: -200px; inset-inline-start: -200px;
+    background: radial-gradient(circle, rgba(46, 184, 133, 0.28), transparent 70%);
+  }
+  body::after {
+    bottom: -200px; inset-inline-end: -200px;
+    background: radial-gradient(circle, rgba(31, 157, 122, 0.22), transparent 70%);
+  }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    background: rgba(7, 19, 15, 0.7);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .container {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .logo {
+    font-weight: 700; font-size: 18px; letter-spacing: -0.3px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .logo-icon {
+    width: 28px; height: 28px; border-radius: 7px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  nav ul {
+    display: flex; gap: 32px; list-style: none;
+    font-size: 14px; color: var(--fg-dim);
+  }
+  nav ul a:hover { color: var(--fg); }
+  @media (max-width: 720px) { nav ul { display: none; } }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 26px; border-radius: 999px;
+    font-size: 15px; font-weight: 600;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    border: none; cursor: pointer;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #03150e;
+    box-shadow: 0 10px 40px rgba(46, 184, 133, 0.35);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 50px rgba(46, 184, 133, 0.5); }
+  .btn-secondary {
+    background: var(--card); color: var(--fg);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover { background: rgba(255, 255, 255, 0.08); }
+
+  .hero { padding: 100px 0 80px; text-align: center; }
+  .hero .badge {
+    display: inline-block; padding: 6px 14px; border-radius: 999px;
+    background: var(--card); border: 1px solid var(--border);
+    font-size: 13px; color: var(--fg-dim);
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-size: clamp(40px, 6vw, 76px);
+    line-height: 1.05; letter-spacing: -2px; font-weight: 800;
+    background: linear-gradient(180deg, #ffffff 30%, #a3c2b5 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    margin-bottom: 24px;
+  }
+  .hero p.lead {
+    font-size: clamp(18px, 2vw, 22px);
+    color: var(--fg-dim);
+    max-width: 640px; margin: 0 auto 40px;
+  }
+  .hero-cta {
+    display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+  .hero-image {
+    max-width: 330px; width: 100%;
+    border-radius: 18px;
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--border);
+  }
+
+  section { padding: 100px 0; }
+  section h2 {
+    font-size: clamp(32px, 4vw, 48px); text-align: center;
+    letter-spacing: -1px; font-weight: 800; margin-bottom: 16px;
+    background: linear-gradient(180deg, #ffffff 50%, #a3c2b5 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  section .subtitle {
+    text-align: center; color: var(--fg-dim);
+    font-size: 18px; max-width: 560px; margin: 0 auto 60px;
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .feature {
+    padding: 32px; border-radius: 18px;
+    background: var(--card); border: 1px solid var(--border);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .feature:hover { transform: translateY(-4px); border-color: rgba(46, 184, 133, 0.4); }
+  .feature .icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: linear-gradient(135deg, rgba(46, 184, 133, 0.22), rgba(31, 157, 122, 0.22));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; margin-bottom: 20px;
+  }
+  .feature h3 { font-size: 18px; margin-bottom: 8px; font-weight: 700; }
+  .feature p { color: var(--fg-dim); font-size: 15px; }
+
+  .shots {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .shots img {
+    width: 100%; border-radius: 18px;
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease;
+  }
+  .shots img:hover { transform: scale(1.02); }
+
+  .pricing-card {
+    max-width: 440px; margin: 0 auto; padding: 48px 40px;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(46, 184, 133, 0.12), rgba(31, 157, 122, 0.04));
+    border: 1px solid rgba(46, 184, 133, 0.3);
+    border-radius: 24px;
+    box-shadow: 0 30px 80px rgba(46, 184, 133, 0.15);
+  }
+  .pricing-card .price {
+    font-size: 64px; font-weight: 800; letter-spacing: -2px;
+    margin: 16px 0 8px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .pricing-card .price-note { color: var(--fg-dim); font-size: 15px; margin-bottom: 32px; }
+  .pricing-card ul { list-style: none; text-align: start; margin-bottom: 32px; }
+  .pricing-card li {
+    padding: 10px 0; color: var(--fg-dim); font-size: 15px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .pricing-card li::before { content: "✓"; color: var(--accent); font-weight: 700; }
+
+  footer {
+    padding: 60px 0 40px; border-top: 1px solid var(--border);
+    text-align: center; color: var(--fg-dim); font-size: 14px;
+  }
+  footer .links {
+    display: flex; justify-content: center; gap: 28px; margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  footer .links a:hover { color: var(--fg); }
+
+  .lang { display: flex; gap: 14px; font-size: 13px; color: var(--fg-dim); }
+  .lang a:hover, .lang a[aria-current] { color: var(--fg); }
+  .lang a[aria-current] { font-weight: 700; }
+  .logo img { width: 28px; height: 28px; border-radius: 7px; display: block; }
+  .shots img { height: auto; }
+  .note { text-align: center; color: var(--fg-dim); font-size: 13px; max-width: 560px; margin: 32px auto 0; }
+  @media (max-width: 720px) { .lang { gap: 10px; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="#" class="logo">
+      <img src="icon.png" alt="" width="28" height="28">
+      Salt Scan
+    </a>
+    <ul>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#screenshots">Screenshots</a></li>
+      <li><a href="#price">Price</a></li>
+      <li><a href="support.html">Support</a></li>
+    </ul>
+    <div class="lang" aria-label="Language">
+      <a href="https://trabelsiachraf.com/saltscan-site/" hreflang="en" lang="en" aria-current="page">English</a>
+      <a href="https://trabelsiachraf.com/saltscan-site/fr/" hreflang="fr" lang="fr">Français</a>
+      <a href="https://trabelsiachraf.com/saltscan-site/ar/" hreflang="ar" lang="ar">العربية</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <span class="badge">Free on the App Store</span>
+    <h1>Check the salt<br>in your food.</h1>
+    <p class="lead">Salt Scan tells you how much salt and sodium is in your food before you eat it. Scan a barcode, see the numbers in a second, and track your daily intake against your own goal.</p>
+    <div class="hero-cta">
+      <a href="https://apps.apple.com/app/id6740041173" class="btn btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.04c-.03-3.18 2.6-4.71 2.72-4.78-1.49-2.17-3.79-2.47-4.61-2.5-1.96-.2-3.83 1.16-4.83 1.16-1.01 0-2.55-1.13-4.19-1.1-2.16.03-4.15 1.26-5.27 3.19-2.25 3.9-.58 9.66 1.61 12.83 1.07 1.55 2.34 3.29 4 3.23 1.61-.07 2.22-1.04 4.16-1.04 1.94 0 2.49 1.04 4.19 1 1.73-.03 2.83-1.57 3.89-3.13 1.23-1.79 1.74-3.53 1.77-3.62-.04-.02-3.4-1.31-3.44-5.19zM13.92 3.2c.89-1.08 1.49-2.59 1.32-4.08-1.28.05-2.83.85-3.76 1.93-.83.96-1.55 2.49-1.36 3.96 1.43.11 2.9-.73 3.8-1.81z"/></svg>
+        Download on the App Store
+      </a>
+      <a href="support.html" class="btn btn-secondary">
+        Read FAQ
+      </a>
+    </div>
+    <img src="hero.png" alt="Salt Scan home screen: today's sodium ring, the latest scans with Low, Medium and High ratings, and the Scan a Product button" class="hero-image">
+  </div>
+</header>
+
+<section id="features">
+  <div class="container">
+    <h2>Scan. See. Decide.</h2>
+    <p class="subtitle">The number that matters, right in the aisle.</p>
+    <div class="features">
+      <div class="feature">
+        <div class="icon">📷</div>
+        <h3>Scan and rate</h3>
+        <p>Scan any barcode and get the salt and sodium content in a second, with a clear Low / Medium / High rating. The rating follows the UK traffic-light thresholds: up to 0.3 g of salt per 100 g is low, above 1.5 g is high.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🧂</div>
+        <h3>Salt in g or sodium in mg</h3>
+        <p>See the numbers the way your country states them: sodium in mg or salt in g, depending on your region. You can switch in Settings.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">📒</div>
+        <h3>A daily journal you can edit</h3>
+        <p>Add a portion to your journal and watch your salt ring fill up. Open any day to change an amount, move it or delete it.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">⚖️</div>
+        <h3>Servings or exact grams</h3>
+        <p>Log half a serving, two servings, or the exact number of grams you ate. Salt Scan works out the salt for you.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🆚</div>
+        <h3>Compare side by side</h3>
+        <p>Put products next to each other, sodium, sugars, saturated fat and Nutri-Score, and pick the better option.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">❤️</div>
+        <h3>Optional Apple Health</h3>
+        <p>Save the sodium of your journal portions to Apple Health if you like. It is off by default, and Salt Scan never reads your Health data.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🔍</div>
+        <h3>Search by name</h3>
+        <p>No barcode at hand? Search the product by name from the Home screen.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🗂️</div>
+        <h3>Every scan saved</h3>
+        <p>Your scans are kept in a searchable history, with favorites for the products you buy again.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🥗</div>
+        <h3>Nutri-Score, allergens, additives</h3>
+        <p>Calories, sugars, saturated fat, proteins, allergens and additives on the same screen as the salt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="screenshots">
+  <div class="container">
+    <h2>See it in action</h2>
+    <p class="subtitle">From the barcode to your daily total.</p>
+    <div class="shots">
+      <img src="shot-1.png" alt="The Salt Scan barcode scanner with a frame to align the barcode and a Search by name shortcut" width="480" height="1043">
+      <img src="shot-2.png" alt="A scanned product showing a Medium rating, its Nutri-Score, sodium per 100 g and per serving, and its nutrients" width="480" height="1043">
+      <img src="shot-3.png" alt="Three products compared side by side: sodium, Nutri-Score, sugars, saturated fat and energy" width="480" height="1043">
+      <img src="shot-4.png" alt="The History tab listing scanned products grouped by day, each with a Low, Medium or High rating" width="480" height="1043">
+    </div>
+    <p class="note">Product data comes from Open Food Facts, the open food database maintained by volunteers worldwide. Accuracy depends on contributions: always check the label before making medical decisions.</p>
+  </div>
+</section>
+
+<section id="price">
+  <div class="container">
+    <h2>Free.</h2>
+    <p class="subtitle">No ads, no account, no tracking.</p>
+    <div class="pricing-card">
+      <div class="price">Free</div>
+      <div class="price-note">No ads · no account · no tracking</div>
+      <ul>
+        <li>Barcode scan with a Low / Medium / High rating</li>
+        <li>Sodium in mg or salt in g, by country</li>
+        <li>Daily journal, editable day by day</li>
+        <li>Servings or exact grams</li>
+        <li>Compare products side by side</li>
+        <li>Optional Apple Health export</li>
+        <li>Search by name, history and favorites</li>
+        <li>English, French and Arabic, light and dark mode</li>
+      </ul>
+      <a href="https://apps.apple.com/app/id6740041173" class="btn btn-primary" style="width: 100%; justify-content: center;">
+        Download on the App Store
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="links">
+      <a href="https://trabelsiachraf.com/saltscan-site/">Home</a>
+      <a href="https://trabelsiachraf.com/saltscan-site/support.html">Support</a>
+      <a href="https://trabelsiachraf.com/saltscan-site/privacy.html">Privacy Policy</a>
+      <a href="https://trabelsiachraf.com/saltscan-site/accessibility.html">Accessibility</a>
+      <a href="https://apps.apple.com/app/id6740041173">App Store</a>
+      <a href="mailto:trabelsiachraf.devapps@gmail.com">Contact</a>
+    </div>
+    <p>© 2026 <a href="https://trabelsiachraf.com/">Achraf Trabelsi</a> · Salt Scan</p>
+  </div>
+</footer>
+
+</body>
+</html>

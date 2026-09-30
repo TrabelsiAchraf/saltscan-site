@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salt Scan — Accessibility</title>
+<link rel="canonical" href="https://trabelsiachraf.com/saltscan-site/accessibility.html">
+<link rel="alternate" hreflang="en" href="https://trabelsiachraf.com/saltscan-site/accessibility.html">
+<link rel="alternate" hreflang="fr" href="https://trabelsiachraf.com/saltscan-site/fr/accessibility.html">
+<link rel="alternate" hreflang="ar" href="https://trabelsiachraf.com/saltscan-site/ar/accessibility.html">
+<link rel="alternate" hreflang="x-default" href="https://trabelsiachraf.com/saltscan-site/accessibility.html">
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; max-width: 720px; margin: 40px auto; padding: 0 24px; color: #1d1d1f; line-height: 1.6; }
+  h1 { font-size: 32px; margin-bottom: 4px; }
+  h2 { font-size: 20px; margin-top: 32px; }
+  h3 { font-size: 17px; margin-top: 20px; }
+  .updated { color: #6e6e73; font-size: 14px; margin-bottom: 32px; }
+  .lang { display: flex; gap: 14px; font-size: 14px; margin-bottom: 24px; }
+  .lang a[aria-current] { color: #1d1d1f; font-weight: 700; text-decoration: none; }
+  a { color: #1a7f5c; }
+  code { background: #f5f5f7; padding: 2px 6px; border-radius: 4px; font-size: 90%; }
+  ul.features { list-style: none; padding: 0; }
+  ul.features li {
+    padding: 14px 16px; margin: 8px 0; border-radius: 10px;
+    background: #f5f5f7; border-inline-start: 3px solid #1a7f5c;
+  }
+  ul.features li strong { display: block; margin-bottom: 4px; }
+  footer {
+    padding: 60px 0 40px; border-top: 1px solid #e5e5ea; margin-top: 56px;
+    text-align: center; color: #6e6e73; font-size: 14px;
+  }
+  footer .container { max-width: 720px; margin: 0 auto; }
+  footer .links { display: flex; justify-content: center; gap: 12px 28px; margin-bottom: 20px; flex-wrap: wrap; }
+  footer a { color: inherit; text-decoration: none; }
+  footer a:hover { color: #1d1d1f; text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<div class="lang" aria-label="Language">
+      <a href="https://trabelsiachraf.com/saltscan-site/accessibility.html" hreflang="en" lang="en" aria-current="page">English</a>
+      <a href="https://trabelsiachraf.com/saltscan-site/fr/accessibility.html" hreflang="fr" lang="fr">Français</a>
+      <a href="https://trabelsiachraf.com/saltscan-site/ar/accessibility.html" hreflang="ar" lang="ar">العربية</a>
+    </div>
+
+<h1>Salt Scan — Accessibility</h1>
+<p class="updated">Last updated: September 30, 2026</p>
+
+<p>Salt Scan is a native SwiftUI app. This page lists the accessibility features we have checked in the app, and the limits we know about, so you know what to expect.</p>
+
+<h2>Supported features</h2>
+
+<ul class="features">
+  <li>
+    <strong>Larger Text (Dynamic Type)</strong>
+    Text set in the app's type scale uses the system text styles (title, headline, body, subheadline, caption), so it follows the text size you choose in iOS.
+  </li>
+  <li>
+    <strong>VoiceOver</strong>
+    Labels are provided on the journal's previous-day and next-day buttons and the calendar button (with a hint), on the portion stepper's less and more buttons, on the Add button of the journal, and on the daily ring on Home, which reads your intake and hints that it opens the journal. The Home search button and the onboarding back button are labelled too. Labels follow the app language.
+  </li>
+  <li>
+    <strong>Colour is not the only signal</strong>
+    The salt rating badge shows an icon and the word Low, Medium or High next to its colour. The daily ring shows the amount as text.
+  </li>
+  <li>
+    <strong>Light, dark or system appearance</strong>
+    Choose Light, Dark or System in Settings.
+  </li>
+  <li>
+    <strong>Arabic and right-to-left</strong>
+    The app is fully translated into Arabic and follows the right-to-left layout direction when Arabic is the language. English and French are available too.
+  </li>
+</ul>
+
+<h2>Known limits</h2>
+
+<h3>Some text does not scale</h3>
+<p>A few elements use a fixed size: the number inside the daily ring and score ring, and the large icon of empty screens. They do not grow with the Larger Text setting.</p>
+
+<h3>Reduce Motion</h3>
+<p>The app has no specific handling of the Reduce Motion setting: its animations, such as the numbers and the progress ring updating, play as usual.</p>
+
+<h3>The barcode scanner needs the camera</h3>
+<p>Scanning means framing a barcode with the camera. If that is hard for you, the "No barcode? Search by name" button on the scanner and the search on Home let you find a product by typing its name instead.</p>
+
+<h2>Reporting issues</h2>
+<p>If you hit an accessibility issue or want to suggest an improvement, email <a href="mailto:trabelsiachraf.devapps@gmail.com">trabelsiachraf.devapps@gmail.com</a>, or use Settings › Contact us in the app. Accessibility feedback is treated as a priority.</p>
+
+<p><a href="https://trabelsiachraf.com/saltscan-site/support.html">Support</a> · <a href="https://trabelsiachraf.com/saltscan-site/privacy.html">Privacy Policy</a> · <a href="https://trabelsiachraf.com/saltscan-site/">Back to home</a></p>
+
+<footer>
+  <div class="container">
+    <div class="links">
+      <a href="https://trabelsiachraf.com/saltscan-site/">Home</a>
+      <a href="https://trabelsiachraf.com/saltscan-site/support.html">Support</a>
+      <a href="https://trabelsiachraf.com/saltscan-site/privacy.html">Privacy Policy</a>
+      <a href="https://trabelsiachraf.com/saltscan-site/accessibility.html">Accessibility</a>
+      <a href="https://apps.apple.com/app/id6740041173">App Store</a>
+      <a href="mailto:trabelsiachraf.devapps@gmail.com">Contact</a>
+    </div>
+    <p>© 2026 <a href="https://trabelsiachraf.com/">Achraf Trabelsi</a> · Salt Scan</p>
+  </div>
+</footer>
+
+</body>
+</html>
