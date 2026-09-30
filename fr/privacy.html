@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salt Scan — Politique de confidentialité</title>
+<link rel="canonical" href="https://trabelsiachraf.com/saltscan-site/fr/privacy.html">
+<link rel="alternate" hreflang="en" href="https://trabelsiachraf.com/saltscan-site/privacy.html">
+<link rel="alternate" hreflang="fr" href="https://trabelsiachraf.com/saltscan-site/fr/privacy.html">
+<link rel="alternate" hreflang="ar" href="https://trabelsiachraf.com/saltscan-site/ar/privacy.html">
+<link rel="alternate" hreflang="x-default" href="https://trabelsiachraf.com/saltscan-site/privacy.html">
+<link rel="icon" type="image/png" href="../icon.png">
+<link rel="apple-touch-icon" href="../icon.png">
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; max-width: 720px; margin: 40px auto; padding: 0 24px; color: #1d1d1f; line-height: 1.6; }
+  h1 { font-size: 32px; margin-bottom: 4px; }
+  h2 { font-size: 20px; margin-top: 32px; }
+  h3 { font-size: 17px; margin-top: 20px; }
+  .updated { color: #6e6e73; font-size: 14px; margin-bottom: 32px; }
+  .lang { display: flex; gap: 14px; font-size: 14px; margin-bottom: 24px; }
+  .lang a[aria-current] { color: #1d1d1f; font-weight: 700; text-decoration: none; }
+  a { color: #1a7f5c; }
+  code { background: #f5f5f7; padding: 2px 6px; border-radius: 4px; font-size: 90%; }
+  footer {
+    padding: 60px 0 40px; border-top: 1px solid #e5e5ea; margin-top: 56px;
+    text-align: center; color: #6e6e73; font-size: 14px;
+  }
+  footer .container { max-width: 720px; margin: 0 auto; }
+  footer .links { display: flex; justify-content: center; gap: 12px 28px; margin-bottom: 20px; flex-wrap: wrap; }
+  footer a { color: inherit; text-decoration: none; }
+  footer a:hover { color: #1d1d1f; text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<div class="lang" aria-label="Langue">
+  <a href="https://trabelsiachraf.com/saltscan-site/privacy.html" hreflang="en" lang="en">English</a>
+  <a href="https://trabelsiachraf.com/saltscan-site/fr/privacy.html" hreflang="fr" lang="fr" aria-current="page">Français</a>
+  <a href="https://trabelsiachraf.com/saltscan-site/ar/privacy.html" hreflang="ar" lang="ar">العربية</a>
+</div>
+
+<h1>Salt Scan — Politique de confidentialité</h1>
+<p class="updated">Dernière mise à jour : 30 septembre 2026</p>
+
+<p>Salt Scan (« l’app ») est une application iOS native qui affiche le sel et le sodium des produits alimentaires. Cette politique explique ce que l’app fait des données. En bref : Salt Scan n’a ni compte, ni outil d’analyse, ni publicité, et garde vos scans et votre journal sur votre appareil.</p>
+
+<h2>Ce que Salt Scan ne fait pas</h2>
+<ul>
+  <li>Aucun compte et aucune inscription.</li>
+  <li>Aucun outil d’analyse et aucun SDK publicitaire ou de traçage.</li>
+  <li>Aucune vente de vos données, et aucun partage au-delà des recherches de produits décrites ci-dessous.</li>
+</ul>
+
+<h2>Ce qui reste sur votre appareil</h2>
+<p>Votre historique de scans et vos favoris, votre journal du jour (chaque portion ajoutée), votre objectif quotidien, vos réglages d’unité et d’apparence, et votre réponse à l’accueil sont stockés uniquement sur votre appareil, dans l’espace de stockage propre à l’app (SwiftData et UserDefaults). Supprimer l’app les efface de l’appareil.</p>
+
+<h2>Ce qui est envoyé, et à qui</h2>
+<ul>
+  <li><strong>Open Food Facts.</strong> Quand vous scannez un code-barres, l’app envoie ce code-barres à <code>world.openfoodfacts.org</code> pour obtenir les données du produit. Quand vous recherchez par nom, le texte saisi est envoyé au même service. Les photos des produits sont chargées depuis l’adresse d’image fournie dans les données du produit. Open Food Facts est une base ouverte tenue par des bénévoles ; consultez <a href="https://world.openfoodfacts.org/privacy">sa propre politique de confidentialité</a>.</li>
+  <li><strong>Google Firebase Firestore.</strong> Uniquement lorsque la recherche sur Open Food Facts échoue, l’app envoie le code-barres à une base Firestore exploitée pour Salt Scan, en solution de repli. Voir <a href="https://firebase.google.com/support/privacy">les informations de confidentialité de Firebase par Google</a>.</li>
+  <li>Rien d’autre. Comme pour toute requête Internet, ces services reçoivent votre adresse IP et les informations techniques habituelles de la requête.</li>
+</ul>
+
+<h2>Caméra</h2>
+<p>La caméra sert uniquement à lire les codes-barres des produits. Aucune image n’est stockée ni envoyée. Vous pouvez désactiver l’accès à la caméra dans les Réglages de votre appareil ; vous pouvez toujours rechercher des produits par leur nom.</p>
+
+<h2>App Santé (facultatif)</h2>
+<p>Désactivé par défaut. Si vous activez « Enregistrer dans Santé » dans les Réglages, Salt Scan écrit le sodium alimentaire de chaque portion du journal dans l’app Santé de votre appareil, le met à jour quand vous modifiez une portion et le retire quand vous la supprimez. Salt Scan ne fait qu’écrire dans Santé : il ne lit jamais vos données Santé, et aucune n’est envoyée au développeur ni à personne d’autre. Vous pouvez le désactiver à tout moment dans les Réglages ou dans l’app Santé.</p>
+
+<h2>Formulaire de contact</h2>
+<p>Réglages › Contactez-nous ouvre l’éditeur de courrier d’iOS, adressé à trabelsiachraf.devapps@gmail.com. Le message, y compris le motif et le choix de retour que vous sélectionnez, est envoyé depuis votre propre compte de messagerie, et seulement si vous l’envoyez.</p>
+
+<h2>Demande d’avis</h2>
+<p>De temps en temps, après quelques scans réussis ou votre première entrée dans le journal, l’app demande au système d’afficher la fenêtre de notation d’Apple. Apple gère cette fenêtre et décide si elle apparaît ; Salt Scan ne reçoit rien en retour.</p>
+
+<h2>Enfants</h2>
+<p>Salt Scan ne collecte sciemment aucune donnée auprès des enfants ni de personne d’autre.</p>
+
+<h2>Modifications de cette politique</h2>
+<p>Si cette politique change, la nouvelle version sera publiée à cette adresse avec une date de « Dernière mise à jour » actualisée.</p>
+
+<h2>Contact</h2>
+<p>Des questions sur cette Politique de confidentialité ? Contactez <a href="mailto:trabelsiachraf.devapps@gmail.com">trabelsiachraf.devapps@gmail.com</a>.</p>
+
+<p><a href="https://trabelsiachraf.com/saltscan-site/fr/support.html">Assistance</a> · <a href="https://trabelsiachraf.com/saltscan-site/fr/">Retour à l’accueil</a></p>
+
+<footer>
+  <div class="container">
+    <div class="links">
+      <a href="https://trabelsiachraf.com/saltscan-site/fr/">Accueil</a>
+      <a href="https://trabelsiachraf.com/saltscan-site/fr/support.html">Assistance</a>
+      <a href="https://trabelsiachraf.com/saltscan-site/fr/privacy.html">Confidentialité</a>
+      <a href="https://trabelsiachraf.com/saltscan-site/fr/accessibility.html">Accessibilité</a>
+      <a href="https://apps.apple.com/app/id6740041173">App Store</a>
+      <a href="mailto:trabelsiachraf.devapps@gmail.com">Contact</a>
+    </div>
+    <p>© 2026 <a href="https://trabelsiachraf.com/">Achraf Trabelsi</a> · Salt Scan</p>
+  </div>
+</footer>
+
+</body>
+</html>
