@@ -8,6 +8,7 @@
 <link rel="alternate" hreflang="en" href="https://trabelsiachraf.com/saltscan-site/privacy.html">
 <link rel="alternate" hreflang="fr" href="https://trabelsiachraf.com/saltscan-site/fr/privacy.html">
 <link rel="alternate" hreflang="ar" href="https://trabelsiachraf.com/saltscan-site/ar/privacy.html">
+<link rel="alternate" hreflang="es" href="https://trabelsiachraf.com/saltscan-site/es/privacy.html">
 <link rel="alternate" hreflang="x-default" href="https://trabelsiachraf.com/saltscan-site/privacy.html">
 <link rel="icon" type="image/png" href="../icon.png">
 <link rel="apple-touch-icon" href="../icon.png">
@@ -37,50 +38,38 @@
   <a href="https://trabelsiachraf.com/saltscan-site/privacy.html" hreflang="en" lang="en">English</a>
   <a href="https://trabelsiachraf.com/saltscan-site/fr/privacy.html" hreflang="fr" lang="fr" aria-current="page">Français</a>
   <a href="https://trabelsiachraf.com/saltscan-site/ar/privacy.html" hreflang="ar" lang="ar">العربية</a>
+  <a href="https://trabelsiachraf.com/saltscan-site/es/privacy.html" hreflang="es" lang="es">Español</a>
 </div>
 
 <h1>Salt Scan — Politique de confidentialité</h1>
-<p class="updated">Dernière mise à jour : 30 septembre 2026</p>
-
-<p>Salt Scan (« l’app ») est une application iOS native qui affiche le sel et le sodium des produits alimentaires. Cette politique explique ce que l’app fait des données. En bref : Salt Scan n’a ni compte, ni outil d’analyse, ni publicité, et garde vos scans et votre journal sur votre appareil.</p>
-
-<h2>Ce que Salt Scan ne fait pas</h2>
-<ul>
-  <li>Aucun compte et aucune inscription.</li>
-  <li>Aucun outil d’analyse et aucun SDK publicitaire ou de traçage.</li>
-  <li>Aucune vente de vos données, et aucun partage au-delà des recherches de produits décrites ci-dessous.</li>
-</ul>
+<p class="updated">Dernière mise à jour : 20 novembre 2026</p>
 
 <h2>Ce qui reste sur votre appareil</h2>
-<p>Votre historique de scans et vos favoris, votre journal du jour (chaque portion ajoutée), votre objectif quotidien, vos réglages d’unité et d’apparence, et votre réponse à l’accueil sont stockés uniquement sur votre appareil, dans l’espace de stockage propre à l’app (SwiftData et UserDefaults). Supprimer l’app les efface de l’appareil.</p>
+<p>Votre journal, votre historique, vos favoris, votre objectif quotidien et la raison pour laquelle vous surveillez le sel sont enregistrés uniquement sur votre iPhone, dans ses widgets et sur votre Apple Watch jumelée. Il n'y a ni compte ni serveur qui les reçoit.</p>
 
-<h2>Ce qui est envoyé, et à qui</h2>
-<ul>
-  <li><strong>Open Food Facts.</strong> Quand vous scannez un code-barres, l’app envoie ce code-barres à <code>world.openfoodfacts.org</code> pour obtenir les données du produit. Quand vous recherchez par nom, le texte saisi est envoyé au même service. Les photos des produits sont chargées depuis l’adresse d’image fournie dans les données du produit. Open Food Facts est une base ouverte tenue par des bénévoles ; consultez <a href="https://world.openfoodfacts.org/privacy">sa propre politique de confidentialité</a>.</li>
-  <li><strong>Google Firebase Firestore.</strong> Uniquement lorsque la recherche sur Open Food Facts échoue, l’app envoie le code-barres à une base Firestore exploitée pour Salt Scan, en solution de repli. Voir <a href="https://firebase.google.com/support/privacy">les informations de confidentialité de Firebase par Google</a>.</li>
-  <li>Rien d’autre. Comme pour toute requête Internet, ces services reçoivent votre adresse IP et les informations techniques habituelles de la requête.</li>
-</ul>
+<h2>Recherche de produits</h2>
+<p>Pour afficher un produit, Salt Scan envoie son code-barres, ou les mots que vous tapez dans la recherche, à <a href="https://world.openfoodfacts.org/privacy">Open Food Facts</a> (openfoodfacts.org), une base alimentaire publique. Si Open Food Facts ne répond pas, le code-barres est cherché dans notre propre liste de produits hébergée sur <a href="https://firebase.google.com/support/privacy">Google Firebase</a>. Ces requêtes ne contiennent ni votre nom, ni compte, ni identifiant. Pour trouver des alternatives moins salées, Salt Scan envoie la catégorie du produit à Open Food Facts.</p>
 
 <h2>Caméra</h2>
-<p>La caméra sert uniquement à lire les codes-barres des produits. Aucune image n’est stockée ni envoyée. Vous pouvez désactiver l’accès à la caméra dans les Réglages de votre appareil ; vous pouvez toujours rechercher des produits par leur nom.</p>
+<p>La caméra sert à scanner les codes-barres et, si vous le choisissez, à lire une étiquette nutritionnelle. Les photos d'étiquette sont lues sur votre appareil et ne sont jamais envoyées.</p>
 
-<h2>App Santé (facultatif)</h2>
-<p>Désactivé par défaut. Si vous activez « Enregistrer dans Santé » dans les Réglages, Salt Scan écrit le sodium alimentaire de chaque portion du journal dans l’app Santé de votre appareil, le met à jour quand vous modifiez une portion et le retire quand vous la supprimez. Salt Scan ne fait qu’écrire dans Santé : il ne lit jamais vos données Santé, et aucune n’est envoyée au développeur ni à personne d’autre. Vous pouvez le désactiver à tout moment dans les Réglages ou dans l’app Santé.</p>
+<h2>Statistiques anonymes</h2>
+<p>Salt Scan envoie des statistiques d'utilisation anonymes à <a href="https://telemetrydeck.com/">TelemetryDeck</a> (telemetrydeck.com) pour savoir quelles fonctions servent, par exemple qu'un produit a été scanné ou qu'une portion a été ajoutée. Elles ne contiennent jamais ce que vous scannez, cherchez ou mangez, votre objectif, ni pourquoi vous surveillez le sel. TelemetryDeck ne conserve aucune adresse IP et seulement un identifiant d'appareil haché qui ne permet pas de vous identifier. Chaque statistique contient aussi un contexte technique général : modèle d'appareil, version du système, langue et région, fuseau horaire et heure, réglages d'affichage et d'accessibilité (comme la taille du texte), et les sessions de l'app (quand elle est ouverte et combien de temps). Vous pouvez les désactiver à tout moment dans Réglages › Partager des statistiques anonymes.</p>
 
-<h2>Formulaire de contact</h2>
-<p>Réglages › Contactez-nous ouvre l’éditeur de courrier d’iOS, adressé à trabelsiachraf.devapps@gmail.com. Le message, y compris le motif et le choix de retour que vous sélectionnez, est envoyé depuis votre propre compte de messagerie, et seulement si vous l’envoyez.</p>
+<h2>App Santé</h2>
+<p>Si vous activez « Enregistrer dans Santé » dans les Réglages, Salt Scan écrit le sodium de chaque portion de votre journal dans l'app Santé de votre appareil, le met à jour quand vous modifiez une portion et le retire quand vous la supprimez. Salt Scan ne lit jamais vos données Santé, et aucune n'est envoyée à nous ni à personne. Vous pouvez désactiver cette option à tout moment dans les Réglages ou dans l'app Santé.</p>
 
-<h2>Demande d’avis</h2>
-<p>De temps en temps, après quelques scans réussis ou votre première entrée dans le journal, l’app demande au système d’afficher la fenêtre de notation d’Apple. Apple gère cette fenêtre et décide si elle apparaît ; Salt Scan ne reçoit rien en retour.</p>
+<h2>Rappels</h2>
+<p>Le rappel du soir est une notification programmée sur votre appareil, uniquement si vous l'activez.</p>
 
-<h2>Enfants</h2>
-<p>Salt Scan ne collecte sciemment aucune donnée auprès des enfants ni de personne d’autre.</p>
+<h2>Suivi et publicité</h2>
+<p>Salt Scan n'affiche aucune publicité et ne vous suit pas d'une app ou d'un site à l'autre.</p>
 
-<h2>Modifications de cette politique</h2>
-<p>Si cette politique change, la nouvelle version sera publiée à cette adresse avec une date de « Dernière mise à jour » actualisée.</p>
+<h2>Modifications</h2>
+<p>Nous mettrons cette page à jour si l'app change ce qu'elle envoie. La date en haut indique la dernière modification.</p>
 
 <h2>Contact</h2>
-<p>Des questions sur cette Politique de confidentialité ? Contactez <a href="mailto:trabelsiachraf.devapps@gmail.com">trabelsiachraf.devapps@gmail.com</a>.</p>
+<p>Questions sur cette politique : <a href="mailto:trabelsiachraf.devapps@gmail.com">trabelsiachraf.devapps@gmail.com</a>, ou Réglages › Nous contacter.</p>
 
 <p><a href="https://trabelsiachraf.com/saltscan-site/fr/support.html">Assistance</a> · <a href="https://trabelsiachraf.com/saltscan-site/fr/">Retour à l’accueil</a></p>
 
